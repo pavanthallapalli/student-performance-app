@@ -16,9 +16,14 @@ papers = st.slider("Sample Papers Practiced", 0, 10, 3)
 extra = 1 if extra == "Yes" else 0
 # Prediction
 if st.button("Predict"):
-    input_data = np.array([[hours, previous, extra, sleep, papers]])
-    input_scaled = scaler.transform(input_data)
-    prediction = model.predict(input_scaled)
-    # Label decoding manually
-    labels = ['Excellent', 'High', 'Low', 'Medium']
-    st.success(f"Predicted Performance: {labels[prediction[0]]}")                                                
+    try:
+        input_data = np.array([[hours, previous, extra, sleep, papers]])
+        input_scaled = scaler.transform(input_data)
+        prediction = model.predict(input_scaled)
+
+        labels = ['Excellent', 'High', 'Low', 'Medium']
+
+        st.success("Predicted Performance: " + labels[int(prediction[0])])
+
+    except Exception as e:
+        st.error(str(e))                                               
