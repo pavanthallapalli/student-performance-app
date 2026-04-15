@@ -21,9 +21,7 @@ if st.button("Predict"):
         input_scaled = scaler.transform(input_data)
         prediction = model.predict(input_scaled)
 
-        labels = ['Excellent', 'High', 'Low', 'Medium']
-
-        st.success("Predicted Performance: " + labels[int(prediction[0])])
+      st.success("Predicted Performance: " + str(prediction[0]))
 
     except Exception as e:
         st.error(str(e))                                               
